@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Família do Níquel — Visão Geral</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="icon" href="{{ url_for('static', filename='img/global/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/local/init.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global/global.css') }}">
+</head>
+<body class="relative min-h-screen bg-black text-white font-sans overflow-hidden">
+
+  <!-- Background MP4 -->
+  <div class="absolute inset-0 -z-10 opacity-20">
+    <video autoplay loop muted playsinline class="w-full h-full object-cover">
+      <source src="{{ url_for('static', filename='img/local/init/atoms.mp4') }}" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-md">
+    <div class="text-2xl font-bold tracking-wider">A Família do Níquel</div>
+    <ul class="flex gap-8 text-lg">
+      <li><a href="/" class="hover:text-gray-300 transition">Início</a></li>
+      <li><a href="/about/" class="hover:text-gray-300 transition">Autor</a></li>
+      <li><a href="/docs/" class="hover:text-gray-300 transition">Documentação</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center text-center h-[80vh] px-4">
+    <section data-aos="fade-up" class="flex flex-col items-center space-y-6 text-center max-w-3xl">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+        Explorando a Família do Níquel
+      </h1>
+      <p class="text-lg md:text-xl max-w-2xl mb-10 text-gray-200">
+        Conheça os elementos fascinantes que compõem a família do Níquel e sua estrutura eletrônica, aplicações e visualizações atômicas em 3D.
+      </p>
+      <a href="/nickel/" class="bouncy-button bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full shadow-lg text-lg font-semibold transition">
+        Explorar Elementos
+      </a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="{{ url_for('static', filename='js/local/init.js') }}" ></script>
+
+</body>
+</html>

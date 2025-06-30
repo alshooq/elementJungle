@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sobre Mim - Bruno RNS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/local/about.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/global/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global/global.css') }}">
+</head>
+<body class="relative min-h-screen bg-black text-white font-sans overflow-hidden">
+
+    <!-- Background video -->
+    <video autoplay muted loop playsinline class="absolute inset-0 -z-10 w-full h-full object-cover opacity-20">
+        <source src="{{ url_for('static', filename='img/local/about/atoms.mp4') }}" type="video/mp4" />
+    </video>
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="text-2xl font-bold tracking-wider">A Família do Níquel</div>
+        <ul class="flex gap-8 text-lg">
+            <li><a href="/" class="hover:text-gray-300 transition">Início</a></li>
+            <li><a href="/about/" class="hover:text-gray-300 transition">Autor</a></li>
+            <li><a href="/docs/" class="hover:text-gray-300 transition">Documentação</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex flex-col items-center justify-center px-6 py-20 text-center max-w-3xl mx-auto space-y-12">
+
+        <section data-aos="fade-up" class="space-y-6">
+            <img src="https://github.com/BrunoRNS.png" alt="Foto" class="w-36 h-36 rounded-full border-4 border-white/20 shadow-lg mx-auto" />
+            <h1 class="text-4xl font-bold" style="color: darkgoldenrod;">Bruno RNS</h1>
+            <p class="text-lg text-gray-300 leading-relaxed max-w-xl mx-auto">
+                Desenvolvedor apaixonado por ciência, visualização de dados e interfaces interativas.<br />
+                Este projeto combina backend feito em Java com Flask Framework via JEP e frontend dinâmico com ThreeJS + TailWind CSS, criando uma ponte entre conhecimento químico e representação visual moderna.
+            </p>
+            <a href="https://github.com/BrunoRNS" target="_blank" class="btn-bounce inline-block mt-4 px-6 py-3 bg-yellow-600 rounded-lg text-white font-semibold shadow-lg hover:bg-yellow-700 transition">
+                Visite meu GitHub
+            </a>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/local/about.js') }}" ></script>
+</body>
+</html>

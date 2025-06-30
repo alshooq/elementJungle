@@ -1,0 +1,6 @@
+*.class
+__pycache__/
+*.pyc
+.keepme
+*.bundle.js
+venv/

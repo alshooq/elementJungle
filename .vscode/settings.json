@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "java.project.referencedLibraries": [
+        "/home/brunorns/Documents/TrabalhoDeQuimica/venv/lib/python3.12/site-packages/jep/jep-4.2.2.jar"
+    ],
+    "java.project.sourcePaths": [
+        "src/main/java"
+    ],
+    "makefile.configureOnOpen": false
+}
