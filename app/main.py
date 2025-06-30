@@ -341,6 +341,23 @@ def start(debug: bool = False, use_reloader: bool = False) -> None:
     
     app.run(debug=debug, use_reloader=use_reloader, host='0.0.0.0', port=8080)
 
+def start_app() -> Flask:
+    """
+    Start the application and return the Flask app instance.
+    
+    :return: The Flask app instance.
+    :rtype: Flask
+    """
+    
+    app: Flask = App.create_app()
+    
+    config: Config = Config(app)
+    totalViews: TotalViews = TotalViews()
+    
+    SetViews(config, totalViews)
+    
+    return app
+
 if __name__ == "__main__":
     """
     Main entry point to start the application.

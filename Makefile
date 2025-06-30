@@ -1,10 +1,12 @@
 JEP_JAR = libs/jep-4.2.2.jar
 JEP_SO_DIR = venv/lib/*/site-packages/jep
 
-all: venv clean src/main/java/Main.class js
+all: venv install clean src/main/java/Main.class js
 
 venv:
 	virtualenv venv
+
+install:
 	venv/bin/pip install -r requirements.txt
 
 clean:
