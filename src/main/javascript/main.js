@@ -1,11 +1,11 @@
 const ELEMENTS = ['nickel', 'palladium', 'platinum', 'darmstadtium'];
 
-// Pega índice do elemento pelo nome
+// Get element index by name
 function getElementIndex(name) {
   return ELEMENTS.indexOf(name.toLowerCase());
 }
 
-// Pega o elemento atual baseado na URL (/nickel/ etc)
+// Get current element based on URL (/nickel/ etc)
 function getCurrentElement() {
   const path = window.location.pathname.toLowerCase();
   for (const el of ELEMENTS) {
@@ -14,7 +14,7 @@ function getCurrentElement() {
   return ELEMENTS[0]; // default nickel
 }
 
-// Fetch JSON do backend
+// Fetch JSON from backend
 async function fetchElementData(elementIndex, page) {
   const res = await fetch('/data/', {
     method: 'POST',
@@ -24,7 +24,7 @@ async function fetchElementData(elementIndex, page) {
   return await res.json();
 }
 
-// Cria a sidebar lateral fixa, oculta no mobile (<768px)
+// Create fixed sidebar, hidden on mobile (<768px)
 function createSidebar(currentElement) {
   const aside = document.createElement('aside');
   aside.className = `
@@ -57,11 +57,11 @@ function createSidebar(currentElement) {
   return aside;
 }
 
-// Alterar renderContent para receber o parâmetro 'page'
+// Modify renderContent to receive 'page' parameter
 function renderContent(container, data, currentElement, page) {
   container.innerHTML = '';
 
-  // Título com ícone
+  // Title with icon
   const title = document.createElement('h2');
   title.className = 'text-4xl font-extrabold mb-8 text-pink-400 drop-shadow-md flex items-center gap-4 justify-center flex-wrap';
 
@@ -78,28 +78,26 @@ function renderContent(container, data, currentElement, page) {
   const contentBlock = document.createElement('div');
   contentBlock.className = 'max-w-3xl mx-auto bg-gray-900 bg-opacity-90 rounded-xl p-8 shadow-lg';
 
-
-  // **Se for página 2, insere a imagem GIF do átomo**
+  // If it's page 2, insert atom video
   if (page === 2) {
-    const gif = document.createElement('video');
-    gif.src = `/img/atoms/${index}/${index}.mp4`;
-    gif.autoplay = true;
-    gif.loop = true;
-    gif.muted = true;
-    gif.playsInline = true;
-    gif.className = 'mx-auto mb-8 w-48 h-auto rounded-md shadow-lg';
-    contentBlock.appendChild(gif);
-    
+    const video = document.createElement('video');
+    video.src = `/img/atoms/${index}/${index}.mp4`;
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.className = 'mx-auto mb-8 w-48 h-auto rounded-md shadow-lg';
+    contentBlock.appendChild(video);
   }
 
-  // Itera sobre campos, ignora nome
+  // Iterate through fields, ignore Nome
   Object.entries(data).forEach(([key, value]) => {
     if (key === 'Nome') return;
 
     const fieldContainer = document.createElement('div');
     fieldContainer.className = 'mb-7';
 
-    // Subtítulo com efeito hover
+    // Subtitle with hover effect
     const subtitle = document.createElement('h3');
     subtitle.className = `
       text-xl font-semibold mb-2 cursor-pointer
@@ -108,7 +106,7 @@ function renderContent(container, data, currentElement, page) {
       flex items-center gap-2 select-none
     `;
 
-    // Ícone pequeno ao lado do subtítulo
+    // Small icon next to subtitle
     const smallIcon = document.createElement('img');
     smallIcon.src = `/img/elements/${index}.png`;
     smallIcon.alt = key;
@@ -127,10 +125,9 @@ function renderContent(container, data, currentElement, page) {
   });
 
   container.appendChild(contentBlock);
-
 }
 
-// Renderiza nav das páginas com botões pulantes
+// Render page navigation with animated buttons
 function createPagination(elementIndex, container, onPageChange) {
   const pageTitles = ['Informações Gerais', 'Distribuição Eletrônica', 'Informações Específicas'];
   let currentPage = 1;
@@ -153,7 +150,7 @@ function createPagination(elementIndex, container, onPageChange) {
     btn.onclick = () => {
       if (currentPage !== i + 1) {
         currentPage = i + 1;
-        // Atualiza classe active nos botões
+        // Update active button classes
         [...nav.children].forEach((b, idx) => {
           b.classList.toggle('ring-2', idx === i);
           b.classList.toggle('ring-pink-400', idx === i);
@@ -167,11 +164,11 @@ function createPagination(elementIndex, container, onPageChange) {
 
   container.appendChild(nav);
 
-  // Função para atualizar conteúdo da página
+  // Function to update page content
   return (page) => {
     currentPage = page;
     onPageChange(page);
-    // Atualiza botão ativo
+    // Update active button
     [...nav.children].forEach((b, idx) => {
       b.classList.toggle('ring-2', idx === page-1);
       b.classList.toggle('ring-pink-400', idx === page-1);
@@ -185,7 +182,7 @@ function initJungleApp() {
 
   if (!main) return;
 
-  // Cria vídeo de fundo só uma vez (se não existir)
+  // Create background video only once (if doesn't exist)
   if (!document.getElementById('bg-video')) {
     const video = document.createElement('video');
     video.id = 'bg-video';
@@ -198,32 +195,32 @@ function initJungleApp() {
     document.body.appendChild(video);
   }
 
-  // Remove sidebar antiga se existir
+  // Remove old sidebar if exists
   const oldSidebar = document.querySelector('aside');
   if (oldSidebar) oldSidebar.remove();
 
-  // Cria sidebar (apenas para md+)
+  // Create sidebar (only for md+)
   const sidebar = createSidebar(currentElement);
   document.body.appendChild(sidebar);
 
-  // Limpa main e deixa opacity 0 (invisível)
+  // Clear main and set opacity to 0 (invisible)
   main.innerHTML = '';
   main.classList.remove('visible');
 
-  // Cria container para paginação + conteúdo
+  // Create container for pagination + content
   const container = document.createElement('div');
   container.className = 'w-full';
   main.appendChild(container);
 
-  // Cria navegação da paginação
+  // Create pagination navigation
   const changePage = (page) => {
-    // Enquanto carrega, opcional: desativa interações
+    // Optional: disable interactions during loading
     main.style.pointerEvents = 'none';
 
     fetchElementData(getElementIndex(currentElement), page)
       .then(data => {
         renderContent(container, data, currentElement, page);
-        // Fade in suave quando conteúdo estiver pronto
+        // Smooth fade in when content is ready
         main.classList.add('visible');
         main.style.pointerEvents = 'auto';
       })
@@ -236,7 +233,7 @@ function initJungleApp() {
 
   const updatePagination = createPagination(getElementIndex(currentElement), main, changePage);
 
-  // Carrega a página 1 inicialmente
+  // Load initial page (page 1)
   updatePagination(1);
 }
 
