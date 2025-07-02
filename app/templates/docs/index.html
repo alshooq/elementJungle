@@ -17,14 +17,21 @@
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-6px); }
       }
+      body {
+  overflow-y: auto;
+  height: 100vh;
+  position: relative;
+}
     </style>
 </head>
 <body class="relative min-h-screen bg-black text-white font-sans overflow-hidden">
 
     <!-- Background video -->
-    <video autoplay muted loop playsinline class="absolute inset-0 -z-10 w-full h-full object-cover opacity-20">
-        <source src="{{ url_for('static', filename='img/local/home/atoms.mp4') }}" type="video/mp4" />
-    </video>
+    <video autoplay muted loop playsinline 
+       class="fixed inset-0 -z-10 w-full h-full object-cover opacity-20"
+       style="pointer-events: none;">
+    <source src="{{ url_for('static', filename='img/local/home/atoms.mp4') }}" type="video/mp4" />
+</video>
 
     <!-- Navbar -->
     <nav class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-md">
@@ -37,7 +44,7 @@
     </nav>
 
     <!-- Main content -->
-    <main class="flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto space-y-16">
+    <main class="flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto space-y-16 relative z-10 min-h-screen">
 
         <section data-aos="fade-up" class="space-y-6">
             <h1 class="text-5xl font-extrabold text-pink-500 drop-shadow-md">Documentação do Família do Níquel</h1>
