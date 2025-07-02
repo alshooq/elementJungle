@@ -1,122 +1,151 @@
 <!DOCTYPE html>
-<html lang="pt-BR" >
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Documentação - Família do Níquel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <link rel="icon" href="{{ url_for('static', filename='img/global/favicon.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/global/global.css') }}">
-    <style>
-      .btn-bounce {
-        animation: bounce 2s infinite;
-      }
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
-      }
-      body {
-  overflow-y: auto;
-  height: 100vh;
-  position: relative;
-}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documentação - Família do Níquel</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Animation on Scroll Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  
+  <!-- Favicon and Global Styles -->
+  <link rel="icon" href="{{ url_for('static', filename='img/global/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global/global.css') }}">
+
+  <!-- Custom styles -->
+  <style>
+    /* Button bounce animation */
+    .btn-bounce {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Responsive body and background handling */
+    body {
+      overflow-y: auto;
+    }
+
+    /* Background video full screen and behind content */
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
 </head>
-<body class="relative min-h-screen bg-black text-white font-sans overflow-hidden">
 
-    <!-- Background video -->
-    <video autoplay muted loop playsinline 
-       class="fixed inset-0 -z-10 w-full h-full object-cover opacity-20"
-       style="pointer-events: none;">
+<body class="bg-black text-white font-sans">
+
+  <!-- Background animated video (atomic visuals) -->
+  <video autoplay muted loop playsinline class="bg-video">
     <source src="{{ url_for('static', filename='img/local/home/atoms.mp4') }}" type="video/mp4" />
-</video>
+  </video>
 
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-md">
-        <div class="text-2xl font-bold tracking-wider">Família do Níquel</div>
-        <ul class="flex gap-8 text-lg">
-            <li><a href="/" class="hover:text-gray-300 transition">Início</a></li>
-            <li><a href="/about/" class="hover:text-gray-300 transition">Autor</a></li>
-            <li><a href="/docs/" class="hover:text-gray-300 transition">Documentação</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation bar (sticky on top) -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-20">
+    <div class="text-2xl font-bold tracking-wider">Família do Níquel</div>
+    <ul class="flex gap-8 text-lg">
+      <li><a href="/" class="hover:text-gray-300 transition">Início</a></li>
+      <li><a href="/about/" class="hover:text-gray-300 transition">Autor</a></li>
+      <li><a href="/docs/" class="hover:text-gray-300 transition">Documentação</a></li>
+    </ul>
+  </nav>
 
-    <!-- Main content -->
-    <main class="flex flex-col items-center justify-center px-6 py-20 text-center max-w-4xl mx-auto space-y-16 relative z-10 min-h-screen">
+  <!-- Main content container -->
+  <main class="px-6 py-20 text-center max-w-4xl mx-auto space-y-16 relative z-10">
 
-        <section data-aos="fade-up" class="space-y-6">
-            <h1 class="text-5xl font-extrabold text-pink-500 drop-shadow-md">Documentação do Família do Níquel</h1>
-            <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                O <strong>Família do Níquel</strong> foi desenvolvido para revolucionar o ensino de Química, conectando teoria e prática por meio de uma interface interativa e responsiva. 
-                Em apenas três dias de intenso desenvolvimento, criamos uma experiência que combina conteúdos científicos com visualizações dinâmicas, promovendo aprendizado significativo.
-            </p>
-        </section>
+    <!-- Title and introduction -->
+    <section data-aos="fade-up" class="space-y-6">
+      <h1 class="text-5xl font-extrabold text-pink-500 drop-shadow-md">Documentação do Família do Níquel</h1>
+      <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+        O <strong>Família do Níquel</strong> foi desenvolvido para revolucionar o ensino de Química, conectando teoria e prática por meio de uma interface interativa e responsiva. 
+        Em apenas três dias de intenso desenvolvimento, criamos uma experiência que combina conteúdos científicos com visualizações dinâmicas, promovendo aprendizado significativo.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-left">
-            <h2 class="text-3xl font-bold text-pink-400 mb-4">Propósito do Projeto</h2>
-            <p class="text-gray-300 leading-relaxed">
-                Nosso foco foi criar um ambiente onde estudantes possam explorar elementos químicos de forma intuitiva, visualizando sua distribuição eletrônica, números quânticos e características únicas. 
-                O projeto ajuda a materializar conceitos abstratos da Química, tornando-os acessíveis e fáceis de compreender para qualquer público.
-            </p>
-        </section>
+    <!-- Project Purpose -->
+    <section data-aos="fade-up" class="space-y-6 text-left">
+      <h2 class="text-3xl font-bold text-pink-400 mb-4">Propósito do Projeto</h2>
+      <p class="text-gray-300 leading-relaxed">
+        Nosso foco foi criar um ambiente onde estudantes possam explorar elementos químicos de forma intuitiva, visualizando sua distribuição eletrônica, números quânticos e características únicas. 
+        O projeto ajuda a materializar conceitos abstratos da Química, tornando-os acessíveis e fáceis de compreender para qualquer público.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-left">
-            <h2 class="text-3xl font-bold text-pink-400 mb-4">Desenvolvimento Responsivo e Interativo</h2>
-            <p class="text-gray-300 leading-relaxed">
-                A aplicação foi pensada para funcionar perfeitamente tanto em dispositivos móveis quanto em desktops, garantindo acessibilidade e conforto visual. 
-                Navegação por abas, sidebars fixas, animações suaves e conteúdos multimídia, como vídeos animados de átomos, aumentam a imersão do usuário e facilitam a compreensão.
-            </p>
-            <p class="text-gray-300 leading-relaxed">
-                Este desenvolvimento prático e rápido permite que estudantes e professores interajam diretamente com o conteúdo, tornando o aprendizado ativo e não passivo.
-            </p>
-        </section>
+    <!-- Responsive and interactive design -->
+    <section data-aos="fade-up" class="space-y-6 text-left">
+      <h2 class="text-3xl font-bold text-pink-400 mb-4">Desenvolvimento Responsivo e Interativo</h2>
+      <p class="text-gray-300 leading-relaxed">
+        A aplicação foi pensada para funcionar perfeitamente tanto em dispositivos móveis quanto em desktops, garantindo acessibilidade e conforto visual. 
+        Navegação por abas, sidebars fixas, animações suaves e conteúdos multimídia, como vídeos animados de átomos, aumentam a imersão do usuário e facilitam a compreensão.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        Este desenvolvimento prático e rápido permite que estudantes e professores interajam diretamente com o conteúdo, tornando o aprendizado ativo e não passivo.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-left">
-            <h2 class="text-3xl font-bold text-pink-400 mb-4">Ensino de Química com Clareza</h2>
-            <p class="text-gray-300 leading-relaxed">
-                Elementos que antes eram estudados apenas em livros agora ganham vida na tela. A apresentação do número quântico principal, spin e distribuição eletrônica de forma visual aproxima o aluno da física atômica real.
-            </p>
-            <p class="text-gray-300 leading-relaxed">
-                Esta clareza na exposição do conteúdo ajuda a fixar conceitos complexos, que costumam ser barreiras para o aprendizado, especialmente em ensino médio e superior.
-            </p>
-        </section>
+    <!-- Chemistry teaching clarity -->
+    <section data-aos="fade-up" class="space-y-6 text-left">
+      <h2 class="text-3xl font-bold text-pink-400 mb-4">Ensino de Química com Clareza</h2>
+      <p class="text-gray-300 leading-relaxed">
+        Elementos que antes eram estudados apenas em livros agora ganham vida na tela. A apresentação do número quântico principal, spin e distribuição eletrônica de forma visual aproxima o aluno da física atômica real.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        Esta clareza na exposição do conteúdo ajuda a fixar conceitos complexos, que costumam ser barreiras para o aprendizado, especialmente em ensino médio e superior.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-left">
-            <h2 class="text-3xl font-bold text-pink-400 mb-4">Acessível em Qualquer Dispositivo</h2>
-            <p class="text-gray-300 leading-relaxed">
-                O design responsivo foi uma prioridade desde o início, garantindo que a aplicação seja utilizável e agradável tanto em telas pequenas quanto grandes. 
-                Isso permite que os usuários aprendam a qualquer hora, em qualquer lugar, potencializando o alcance e a eficácia do projeto.
-            </p>
-        </section>
+    <!-- Device accessibility -->
+    <section data-aos="fade-up" class="space-y-6 text-left">
+      <h2 class="text-3xl font-bold text-pink-400 mb-4">Acessível em Qualquer Dispositivo</h2>
+      <p class="text-gray-300 leading-relaxed">
+        O design responsivo foi uma prioridade desde o início, garantindo que a aplicação seja utilizável e agradável tanto em telas pequenas quanto grandes. 
+        Isso permite que os usuários aprendam a qualquer hora, em qualquer lugar, potencializando o alcance e a eficácia do projeto.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-left">
-            <h2 class="text-3xl font-bold text-pink-400 mb-4">Impacto Educacional</h2>
-            <p class="text-gray-300 leading-relaxed">
-                Em apenas três dias, conseguimos criar um protótipo robusto que demonstra o potencial da tecnologia aliada ao ensino. O Família do Níquel não é apenas uma ferramenta, mas uma proposta de ensino de Química.
-            </p>
-            <p class="text-gray-300 leading-relaxed">
-                O uso de interatividade, vídeos, visualizações e navegação dinâmica ajuda a construir um aprendizado mais envolvente, motivador e efetivo, fomentando o interesse pela ciência.
-            </p>
-        </section>
+    <!-- Educational impact -->
+    <section data-aos="fade-up" class="space-y-6 text-left">
+      <h2 class="text-3xl font-bold text-pink-400 mb-4">Impacto Educacional</h2>
+      <p class="text-gray-300 leading-relaxed">
+        Em apenas três dias, conseguimos criar um protótipo robusto que demonstra o potencial da tecnologia aliada ao ensino. O Família do Níquel não é apenas uma ferramenta, mas uma proposta de ensino de Química.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        O uso de interatividade, vídeos, visualizações e navegação dinâmica ajuda a construir um aprendizado mais envolvente, motivador e efetivo, fomentando o interesse pela ciência.
+      </p>
+    </section>
 
-        <section data-aos="fade-up" class="space-y-6 text-center">
-            <a href="https://github.com/BrunoRNS/elementJungle" target="_blank" rel="noopener" class="btn-bounce inline-block mt-4 px-8 py-3 bg-pink-600 rounded-lg text-white font-semibold shadow-lg hover:bg-pink-700 transition">
-                Visite o Repositório no GitHub
-            </a>
-        </section>
+    <!-- GitHub CTA -->
+    <section data-aos="fade-up" class="space-y-6 text-center">
+      <a href="https://github.com/BrunoRNS/elementJungle" target="_blank" rel="noopener" class="btn-bounce inline-block mt-4 px-8 py-3 bg-pink-600 rounded-lg text-white font-semibold shadow-lg hover:bg-pink-700 transition">
+        Visite o Repositório no GitHub
+      </a>
+    </section>
 
-    </main>
+  </main>
 
-    <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-      });
-    </script>
+  <!-- AOS (Animate on Scroll) Library -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  </script>
+
 </body>
 </html>
